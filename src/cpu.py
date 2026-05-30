@@ -8,9 +8,9 @@ def get_cpu_usage(interval: int, percpu: bool) -> str:
     cpu_usage = psutil.cpu_percent(interval=interval, percpu=percpu)
 
     if percpu:
-        percpu_str = ", ".join(map(str, cpu_usage))
+        percpu_str = ", ".join(str(round(v)) for v in cpu_usage)
         return percpu_str
-    return f"{cpu_usage}%"
+    return f"{round(cpu_usage)}%"
 
 
 def main(args):
